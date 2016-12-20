@@ -1,0 +1,51 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title }}</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'semantic/semantic.min.css' %}">
+    <script src="{% static 'semantic/semantic.min.js' %}"></script>
+</head>
+<body>
+<h1 style="width: 200px;margin: 0 auto">九门金榜</h1>
+<hr>
+<div style="width:100%;margin: 0 auto">
+    <div class="ui nine cards">
+        {% for biggod in biggods %}
+            <div class="ui card">
+                <div class="image">
+                    <img src="{% url 'media' biggod.image %}">
+                </div>
+                <div class="content">
+                    <div class="header">{{ biggod.name }}</div>
+                    <div class="meta">
+                        <a class="group">{{ biggod.english_name }}|{{ biggod.birthday }}</a>
+                    </div>
+                    <div class="description">
+                        <div class="ui list">
+                            {% for tag in biggod.tags.all %}
+                                <div class="item">
+                                    <a class="ui red tag label">{{ tag.label }}</a>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+                <div class="extra content">
+                    <form class="ui form" method="post" action="{% url 'add_tag' biggod.id %}">
+                        {% csrf_token %}
+                        <div class="field">
+                            <input type="text" name="new_tag" placeholder="你对他的印象">
+                        </div>
+                        <button class="ui submit fluid button" type="submit">走你</button>
+                    </form>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+
+
+</body>
+</html>
