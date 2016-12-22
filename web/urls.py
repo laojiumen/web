@@ -21,6 +21,7 @@ from web import settings
 
 urlpatterns = [
     url(r'^media/(?P<path>.*)$', serve, {"document_root": settings.MEDIA_ROOT}, name="media"),
+    url(r'^static/(?P<path>.*)$', serve, {'document_root': settings.STATIC_ROOT}, name="static"),
     url(r'^admin/', admin.site.urls),
     url(r'', include('portal.urls')),
 ]
