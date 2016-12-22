@@ -19,7 +19,8 @@ def index(request):
 @require_http_methods(["POST"])
 def add_tag(request, god_id):
     new_tag = request.POST['new_tag'].encode('utf-8')
-
+    if not str(new_tag).strip():
+        return redirect(reverse('index'))
     new_tag = Tag(label=new_tag)
     new_tag.save()
 
