@@ -1,4 +1,5 @@
 {% load staticfiles %}
+{% load i18n %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,6 +16,7 @@
         {% for biggod in biggods %}
             <div class="ui card">
                 <div class="image">
+{#                    {{ MEDIA_URL }}#}
                     <img src="{% url 'media' biggod.image %}">
                 </div>
                 <div class="content">
@@ -46,6 +48,20 @@
     </div>
 </div>
 
-
+{#{% now "jS F Y H:i" %}<br/>#}
+{#It is the {% now "jS \o\f F" %}<br/>#}
+{#It is {% now "DATE_FORMAT"%}<br/>#}
+{#It is {% now "SHORT_DATE_FORMAT"%}<br/>#}
+{#t is {% now "DATETIME_FORMAT"%}<br/>#}
+{#t is {% now "SHORT_DATETIME_FORMAT"%}<br/>#}
+{#{% url 'admin:index' %}#}
+{#{% url 'admin:index' as f %}#}
+{#aaa {{ f }}<br/>#}
+{##}
+{#11111111111111111111#}
+{#<br/>#}
+{#{{ app_path }}#}
+{##}
+{#{% trans "Login in" %}#}
 </body>
 </html>
